@@ -1,4 +1,4 @@
-package com.navi.githubpulls
+package com.navi.githubpulls.ui.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
