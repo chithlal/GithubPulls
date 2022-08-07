@@ -1,6 +1,8 @@
 plugins {
   id 'com.android.application'
   id 'org.jetbrains.kotlin.android'
+  id 'kotlin-kapt'
+  id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -55,6 +57,8 @@ dependencies {
   def loggingInterceptorVersion = "4.9.0"
   def glideVersion = "4.13.2"
   def hiltVersion = '2.43.2'
+  def coroutineVersion = "1.6.2"
+  def viewModelVersion = "2.5.1"
 
   //libs
   implementation 'androidx.core:core-ktx:1.8.0'
@@ -78,8 +82,14 @@ dependencies {
   implementation "com.github.bumptech.glide:glide:$glideVersion"
   annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
+  //coroutine
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.2"
+  implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+  implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2'
+
+
   //di
   implementation "com.google.dagger:hilt-android:$hiltVersion"
-  annotationProcessor "com.google.dagger:hilt-compiler:$hiltVersion"
+  kapt "com.google.dagger:hilt-compiler:$hiltVersion"
 
 }

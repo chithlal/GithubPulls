@@ -3,7 +3,9 @@ package com.navi.githubpulls.di
 import com.navi.githubpulls.BuildConfig
 import com.navi.githubpulls.network.GithubApiService
 import com.navi.githubpulls.network.GithubNetworkSource
-import com.navi.githubpulls.network.GithubNetworkSourceImplementation
+import com.navi.githubpulls.network.GithubNetworkSourceImpl
+import com.navi.githubpulls.repository.GithubRepository
+import com.navi.githubpulls.repository.GithubRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,10 +49,14 @@ object ApplicationModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit) = retrofit.create(GithubApiService::class.java)
+    fun provideApiService(retrofit: Retrofit): GithubApiService = retrofit.create(GithubApiService::class.java)
 
     @Provides
     @Singleton
-    fun provideApiHelper(apiService: GithubApiService): GithubNetworkSource = GithubNetworkSourceImplementation(apiService)
+    fun provideNetworkSource(apiService: GithubApiService): GithubNetworkSource = GithubNetworkSourceImpl(apiService)
+
+    @Provides
+    @Singleton
+    fun provideRepo(networkSource: GithubNetworkSource): GithubRepository = GithubRepositoryImpl(networkSource)
 
 }
