@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -13,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -246,6 +248,23 @@ fun UIContent(
     }
 }
 
+//Error UI
+
+@Composable
+fun ErrorUI(text: String, modifier: Modifier = Modifier){
+    Column(modifier = modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(text = text, style = MaterialTheme.typography.h6.copy(color = Color.Red))
+    }
+}
+
+//Loading UI
+@Composable
+fun LoadingUI( modifier: Modifier){
+    Column(modifier = modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+        CircularProgressIndicator(color = MaterialTheme.colors.secondaryVariant, strokeWidth = 2.dp)
+    }
+}
+
 // Preview
 @Preview
 @Composable
@@ -271,4 +290,16 @@ private fun CardUIPreview() {
         closedAt = "today",
         userName = "chithlal"
     )
+}
+
+@Preview
+@Composable
+private fun ErrorUIPreview(){
+    ErrorUI(text = "Oops! something went wrong")
+}
+
+@Preview
+@Composable
+private fun LoadingUIPreview(){
+    LoadingUI( modifier = Modifier)
 }

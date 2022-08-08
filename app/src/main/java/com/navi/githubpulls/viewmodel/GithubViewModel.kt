@@ -22,13 +22,10 @@ class GithubViewModel @Inject constructor(val githubRepository: GithubRepository
     private val _closedPullsLiveData: MutableLiveData<ResponseState<PullRequest>> = MutableLiveData()
     val closedPullsLiveData: LiveData<ResponseState<PullRequest>> = _closedPullsLiveData
 
-    init {
-        refreshAndGetClosedPulls()
-    }
 
 
     fun refreshAndGetClosedPulls(){
-        _closedPullsLiveData.value = ResponseState(LOADING,"Loading",null)
+        _closedPullsLiveData.value = ResponseState(LOADING,"Loading", PullRequest())
         viewModelScope.launch {
             val pullRequests = githubRepository.getClosedPulls()
             if (pullRequests.isNullOrEmpty().not()){
