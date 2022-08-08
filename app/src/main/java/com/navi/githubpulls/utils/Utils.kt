@@ -1,5 +1,8 @@
 package com.navi.githubpulls.utils
 
+import java.text.SimpleDateFormat
+import java.util.Date
+
 class ResponseState<out T>(
     val state: State,
     val message: String?,
@@ -22,4 +25,11 @@ class ResponseState<out T>(
 
 enum class State{
     SUCCESS, ERROR, LOADING
+}
+
+fun getDateText(dateText: String): String{
+    val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(dateText)
+    val outPutDateFormat = SimpleDateFormat("E LLLL yyyy HH:mm")
+
+   return outPutDateFormat.format(date).toString()
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GithubPulls</string>
+    <string name="title"> Pull Requests</string>
 </resources>
