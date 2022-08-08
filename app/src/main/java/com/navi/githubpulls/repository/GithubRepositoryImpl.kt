@@ -3,8 +3,6 @@ package com.navi.githubpulls.repository
 import android.util.Log
 import com.navi.githubpulls.model.PullRequest
 import com.navi.githubpulls.network.GithubNetworkSource
-import dagger.hilt.android.AndroidEntryPoint
-
 
 class GithubRepositoryImpl(val githubNetworkSource: GithubNetworkSource) : GithubRepository {
     override suspend fun getClosedPulls(): PullRequest? {

@@ -57,6 +57,7 @@ fun MainUI(
     val title = stringResource(id = R.string.title)
     val scaffoldState = rememberScaffoldState()
     Scaffold(
+        modifier = modifier,
         scaffoldState = scaffoldState,
         topBar = { AppBar(title = title, modifier = Modifier) },
         backgroundColor = MaterialTheme.colors.primary,
@@ -251,16 +252,24 @@ fun UIContent(
 //Error UI
 
 @Composable
-fun ErrorUI(text: String, modifier: Modifier = Modifier){
-    Column(modifier = modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+fun ErrorUI(text: String, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text(text = text, style = MaterialTheme.typography.h6.copy(color = Color.Red))
     }
 }
 
 //Loading UI
 @Composable
-fun LoadingUI( modifier: Modifier){
-    Column(modifier = modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+fun LoadingUI(modifier: Modifier) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         CircularProgressIndicator(color = MaterialTheme.colors.secondaryVariant, strokeWidth = 2.dp)
     }
 }
@@ -294,12 +303,12 @@ private fun CardUIPreview() {
 
 @Preview
 @Composable
-private fun ErrorUIPreview(){
+private fun ErrorUIPreview() {
     ErrorUI(text = "Oops! something went wrong")
 }
 
 @Preview
 @Composable
-private fun LoadingUIPreview(){
-    LoadingUI( modifier = Modifier)
+private fun LoadingUIPreview() {
+    LoadingUI(modifier = Modifier)
 }

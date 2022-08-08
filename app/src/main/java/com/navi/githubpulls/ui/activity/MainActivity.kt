@@ -19,8 +19,6 @@ import com.navi.githubpulls.ui.components.ErrorUI
 import com.navi.githubpulls.ui.components.LoadingUI
 import com.navi.githubpulls.ui.components.MainUI
 import com.navi.githubpulls.ui.theme.GithubPullsTheme
-import com.navi.githubpulls.utils.State
-import com.navi.githubpulls.utils.State.ERROR
 import com.navi.githubpulls.utils.State.LOADING
 import com.navi.githubpulls.utils.State.SUCCESS
 import com.navi.githubpulls.utils.isNetworkAvailable
@@ -47,7 +45,7 @@ class MainActivity : ComponentActivity() {
                     ) {
 
                     if (isNetworkAvailable(context = LocalContext.current)) {
-                        LaunchedEffect(key1 = true ){
+                        LaunchedEffect(key1 = true) {
                             viewModel.refreshAndGetClosedPulls()
                         }
 
@@ -56,7 +54,7 @@ class MainActivity : ComponentActivity() {
                     when (prState.value?.state) {
                         SUCCESS -> MainUI(pullRequest = prState.value!!.data!!, modifier = Modifier)
                         LOADING -> LoadingUI(modifier = Modifier)
-                        else->{
+                        else -> {
                             if (!isNetworkAvailable(LocalContext.current)) ErrorUI(text = "No Internet!") else ErrorUI(
                                 text = "Oops! something went wrong",
                                 Modifier
@@ -64,7 +62,6 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                     Log.d("Home", "onCreate: ${prState.value?.data}")
-                    //Log.d("Home", "onCreate: ${viewModel.value.closedPullsLiveData.value}")
                     BackHandler(enabled = true) {
                         finish()
                     }
